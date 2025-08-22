@@ -7,22 +7,13 @@ import joblib
 st.set_page_config(page_title="Heart Attack Risk Predictor", page_icon="💓")
 st.title("💓 Heart Attack Risk Prediction App")
 
-# -----------------------
-# Load pre-trained Logistic Regression model
-# -----------------------
 preprocess = joblib.load("preprocess.pkl")
 pipe_lr = joblib.load("pipe_lr.pkl")
 threshold_lr = joblib.load("thresholds.pkl")["lr"]
 
-# -----------------------
-# Load dataset to populate options
-# -----------------------
 df = pd.read_csv("heart_2022_no_nans.csv")
 num_cols = ["PhysicalHealthDays", "MentalHealthDays", "SleepHours", "HeightInMeters", "WeightInKilograms", "BMI"]
 
-# -----------------------
-# Demo patients
-# -----------------------
 demo_patients = {
     "Healthy": {
         "Sex": "Female",
@@ -50,9 +41,6 @@ demo_patients = {
     }
 }
 
-# -----------------------
-# Select demo patient or manual input
-# -----------------------
 mode = st.radio("Input Mode", ["Manual Input", "Demo Patient Mode"])
 
 inp = {}
@@ -72,36 +60,24 @@ else:
             default_index = options.index(default_val) if default_val in options else 0
             inp[col] = st.selectbox(col, options, index=default_index)
 
-# -----------------------
-# Display input table for clarity
-# -----------------------
 st.subheader("Patient Input Summary")
 input_display_df = pd.DataFrame([inp])
 st.table(input_display_df)
 
-# -----------------------
-# Prepare input dataframe
-# -----------------------
 input_df = pd.DataFrame([inp])
 
-# Ensure all expected columns exist for preprocessing
 expected_cols = preprocess.feature_names_in_
 for col in expected_cols:
     if col not in input_df.columns:
         if col in num_cols:
             input_df[col] = 0
         else:
-            input_df[col] = df[col].mode()[0]  # most common category
+            input_df[col] = df[col].mode()[0]  
 
-# Reorder columns to match training
 input_df = input_df[expected_cols]
 
-# Transform input
 input_proc = preprocess.transform(input_df)
 
-# -----------------------
-# Prediction
-# -----------------------
 if st.button("Predict"):
     prob = float(pipe_lr.predict_proba(input_proc)[0, 1])
     pred = int(prob >= threshold_lr)
@@ -112,3 +88,4 @@ if st.button("Predict"):
         st.success(f"✅ Low Risk (thr={threshold_lr:.2f}): {1 - prob:.2f} probability of No Heart Attack")
 
     st.caption(f"Debug → P(y=1)={prob:.2f} | Threshold={threshold_lr:.2f} | Model=Logistic Regression")
+
