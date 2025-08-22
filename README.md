@@ -20,5 +20,5 @@ Built on top of the **CDC BRFSS 2022 dataset** (~400k individuals), this project
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/heart-disease-prediction.git
+   git clone https://github.com/its-saksham/heart-disease-prediction.git
    cd heart-disease-prediction
