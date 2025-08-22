@@ -14,7 +14,7 @@ Our aim:
 - **Features:** ~40 columns covering demographics, health habits, wellness, medical history, preventive care, disabilities, and oral health  
 - **Target:** `HadHeartAttack` → *Yes* (~6%) / *No* (~94%)
 
-Kaggle Source: [Personal Key Indicators of Heart Disease (Kamil Pytlak)](https://www.kaggle.com/datasets/kamilpytlak/personal-key-indicators-of-heart-disease) :contentReference[oaicite:0]{index=0}
+Kaggle Source: [Personal Key Indicators of Heart Disease (Kamil Pytlak)](https://www.kaggle.com/datasets/kamilpytlak/personal-key-indicators-of-heart-disease) 
 
 ---
 
