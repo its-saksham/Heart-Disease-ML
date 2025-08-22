@@ -79,7 +79,3 @@ Yes/No indicators for:
 ##  TL;DR  
 A rich dataset capturing **health, habits, and demographics** of 400k Americans in 2022—perfect for building reliable, real-world heart attack risk models using **Logistic Regression** (or any classifier).
 
----
-
-##  Optional: Add a Sample Record  
-Want to include a mini example row for clarity (like a quick simulator)? Just say the word—I’ll craft one for you.
